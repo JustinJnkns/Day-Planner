@@ -26,3 +26,22 @@ $(document).ready(function() {
     $("#4pm .description").val(localStorage.getItem("4pm"));
     $("#5pm .description").val(localStorage.getItem("5pm"));
   })
+
+  $("textarea").blur()
+//function to change color based on time of day
+var setColor = function(){
+    var taskHour = moment().format("H")
+    $("textarea").each(function(){
+        var hour = parseInt($(this).attr('data-hour'))
+        console.log(hour)
+        if(hour == taskHour){
+            $(this).addClass('present')
+        }
+        else if(hour<taskHour){
+            $(this).addClass('past')
+        }
+        else{$(this).addClass('future')}
+    })
+
+}
+setColor()
